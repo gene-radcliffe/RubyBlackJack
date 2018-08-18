@@ -39,10 +39,10 @@ class Deck
 
    
     def shuffle
-        if @card_array == nil then
+        # if @card_array == nil || @card_array.length <52 then
             create_deck
             @card_array.shuffle!
-        end   
+        # end   
         deck_clone = self.clone
         deck_clone.shuffle_array
         # self.shuffle_array
@@ -74,11 +74,12 @@ class Deck
     end
 
     def create_deck
-      @DECK_HASH.each do |k,v|
-        v.each do |val|
-          @card_array.push(Card.new(val,k))
+        @card_array =[]
+        @DECK_HASH.each do |k,v|
+            v.each do |val|
+                @card_array.push(Card.new(val,k))
+            end
         end
-      end
     end
 
     

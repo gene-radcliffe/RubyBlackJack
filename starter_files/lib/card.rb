@@ -14,6 +14,12 @@ class Card
     end
 
     def init_hash
+        @rank_unicode_hash={
+            :spades     =>  "\u2664", 
+            :diamonds   =>  "\u2662",
+            :hearts     =>  "\u2661",
+            :clubs      =>  "\u2667" 
+            }
       @rank_hash={
         :A=> 1, 
         2=> 2,
@@ -55,6 +61,15 @@ class Card
         @rank_hash[card_rank]
     end
   
-    
+    def inspect
+        unicode_string = @rank_unicode_hash[@suite]
+        suite_str = unicode_string.encode("utf-8")
+        "[#{@rank}#{suite_str}]"
+    end
+    def to_s
+        unicode_string = @rank_unicode_hash[@suite]
+        suite_str = unicode_string.encode("utf-8")
+        "[#{@rank}#{suite_str}]"
+    end
     
 end

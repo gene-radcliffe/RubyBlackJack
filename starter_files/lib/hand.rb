@@ -2,7 +2,7 @@ require_relative "card"
 
 class Hand
 
-    attr_accessor :value
+   
     def initialize
         @cards=[]
         @value=0
@@ -29,22 +29,36 @@ class Hand
     def addCard(card) 
         accumulate_cards(card)
     end
-
+    def cards
+        @cards
+    end
+    def showHandValue
+        @value
+    end
     def accumulate_cards(card)
         #if ace check if already in hand, if so, just add 1 to the value
         if card.rank == :A then
           if aceInHand?(card) then
+              @cards.push(card)
               return @value += 1 
           end
         end
         @value += @card_value_hash[card.rank] 
         @cards.push(card)           
     end
-    def cards
-      @cards
-    end
+    
     def aceInHand?(card)
         @cards.include?(card)
     end
-    
+
+    def isBlackJack?
+        ranks=[]
+        if @cards.length == 2 then
+          @cards.each{|card|
+            ranks.push(card.rank)
+          }
+          ranks.include?(:A) && ranks.include?(:K)||
+          ranks.include?(:A) && ranks.include?(:Q) ||ranks.include?(:A) && ranks.include?(:J)
+        end 
+    end
 end
