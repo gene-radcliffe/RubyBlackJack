@@ -1,3 +1,5 @@
+require_relative "hand"
+
 module Playable
     def isBlackJack
     end
@@ -6,9 +8,9 @@ class Player
     #include Playable
     # include Hand
 
-    def initialize
-        @cash
-        @hand = Hand.new
+    def initialize(cash)
+        @cash = cash
+        ready
     end
 
     def startingCash(cash)
@@ -34,7 +36,7 @@ class Player
             break if c>cards.length
             print " and #{cards[c] }"
         }
-        print " and a total of #{@hand.showHandValue}"
+        print " and a total of #{@hand.showHandValue} \n"
     end 
     
     def isBlackJack
@@ -49,8 +51,9 @@ class Player
         @cash
     end
 
-    # def split
-    # end
+    def ready
+        @hand = Hand.new
+    end
 
     # def surrender
     # end

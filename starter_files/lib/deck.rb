@@ -1,4 +1,5 @@
 require_relative "card"
+
 class Deck
     
     attr_accessor :shuffled_deck
@@ -39,14 +40,13 @@ class Deck
 
    
     def shuffle
-        # if @card_array == nil || @card_array.length <52 then
-            create_deck
-            @card_array.shuffle!
-        # end   
-        deck_clone = self.clone
-        deck_clone.shuffle_array
-        # self.shuffle_array
-        deck_clone 
+        create_deck
+        @card_array.shuffle!
+         
+        # deck_clone = self.clone
+        # deck_clone.shuffle_array
+       
+        # deck_clone 
     end
 
     def delete_card_from_deck(card)
@@ -72,17 +72,15 @@ class Deck
     def cards_left
         @cards_left = @card_array.length
     end
-
     def create_deck
-        @card_array =[]
-        @DECK_HASH.each do |k,v|
-            v.each do |val|
-                @card_array.push(Card.new(val,k))
-            end
+    @card_array=[]
+      @DECK_HASH.each do |k,v|
+        v.each do |val|
+          @card_array.push(Card.new(val,k))
         end
+      end
     end
 
-    
     def shuffle_array
       @card_array.shuffle!
     end

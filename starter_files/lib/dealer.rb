@@ -1,10 +1,10 @@
-
+require_relative "hand"
 class Dealer
     
 
     def initialize
         @deck= Deck.new
-        @hand = Hand.new
+        ready
     end
     def cardsLeft
         @deck.cards_left
@@ -23,16 +23,29 @@ class Dealer
     def isBlackJack
         @hand.isBlackJack?
     end
-    
+
+    def ready
+        @hand = Hand.new
+    end
+
+    def shuffleDeck
+        @deck.shuffle
+    end
+    def showCard
+        cards=@hand.cards
+        puts "Dealer has a #{cards[0]}"
+    end
     def showHand
     #You have a 9 and a 8 in your hand. Your total is 15.
         cards =  @hand.cards
-        print "You have a hand of: #{cards[0]}"
+        print "Dealer has a hand of: #{cards[0]}"
         cards.each_index{|card|
             c = card+1 
             break if c>cards.length
             print " and #{cards[c] }"
         }
-        print " and a total of #{@hand.showHandValue}"
+        print " and a total of #{@hand.showHandValue} \n"
     end 
+
+    
 end 
