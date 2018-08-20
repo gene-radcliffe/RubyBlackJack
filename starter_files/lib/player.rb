@@ -25,7 +25,7 @@ class Player
     end
 
     def handTotal
-        @hand.showHandValue
+        @hand.handValue
     end
     def showHand
     #You have a 9 and a 8 in your hand. Your total is 15.
@@ -36,12 +36,10 @@ class Player
             break if c>cards.length
             print " and #{cards[c] }"
         }
-        print " and a total of #{@hand.showHandValue} \n"
+        print " and a total of #{@hand.handValue} \n"
     end 
     
-    def isBlackJack
-        @hand.isBlackJack?
-    end
+   
     def bet(cash)
         @cash=@cash-cash
         cash
@@ -54,7 +52,15 @@ class Player
     def ready
         @hand = Hand.new
     end
-
+    def isBust?
+        if @hand.handValue>21 then
+           return true
+        end
+        return false
+    end
+    def isBlackJack?
+        @hand.isBlackJack?
+    end
     # def surrender
     # end
 end

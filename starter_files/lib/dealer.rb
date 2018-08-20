@@ -18,7 +18,7 @@ class Dealer
     end
 
     def handTotal
-        @hand.showHandValue
+        @hand.handValue
     end
     def isBlackJack
         @hand.isBlackJack?
@@ -44,8 +44,15 @@ class Dealer
             break if c>cards.length
             print " and #{cards[c] }"
         }
-        print " and a total of #{@hand.showHandValue} \n"
+        print " and a total of #{@hand.handValue} \n"
     end 
-
-    
+    def isBust?
+        if @hand.handValue>21 then
+           return true
+        end
+        return false
+    end
+    def isBlackJack?
+        @hand.isBlackJack?
+    end
 end 

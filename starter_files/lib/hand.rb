@@ -32,7 +32,7 @@ class Hand
     def cards
         @cards
     end
-    def showHandValue
+    def handValue
         @value
     end
     def accumulate_cards(card)
@@ -58,7 +58,8 @@ class Hand
             ranks.push(card.rank)
           }
           ranks.include?(:A) && ranks.include?(:K)||
-          ranks.include?(:A) && ranks.include?(:Q) ||ranks.include?(:A) && ranks.include?(:J)
+          ranks.include?(:A) && ranks.include?(:Q)||
+          ranks.include?(:A) && ranks.include?(:J)
         end 
     end
 end
